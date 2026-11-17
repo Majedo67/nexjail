@@ -1,38 +1,34 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080d18">
-<title>NexJail</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d18"><title>NexJail</title>
 <style>
-:root{color-scheme:dark;--bg:#080d18;--panel:#111a2b;--line:#24334c;--muted:#9aabc5;--blue:#55c8ff;--green:#72e0ad}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#18345b 0,transparent 48%),var(--bg);color:#f4f8ff;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
-.wrap{max-width:900px;margin:auto;padding:24px 18px 50px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:11px;font-size:21px;font-weight:800;letter-spacing:.08em}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#163c63,#102034);display:grid;place-items:center;color:var(--blue);font-size:23px;border:1px solid #315575}.tag{font-size:12px;color:var(--green);border:1px solid #28604d;padding:7px 10px;border-radius:99px}
-.hero{text-align:center;padding:58px 8px 34px}.eyebrow{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.18em}.hero h1{font-size:clamp(38px,8vw,66px);margin:12px 0 10px;letter-spacing:-.055em}.hero p{color:var(--muted);max-width:560px;margin:0 auto;line-height:1.65}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.panel{background:linear-gradient(160deg,#142139,#0e1727);border:1px solid var(--line);border-radius:20px;padding:20px}.panel h2{margin:0 0 8px;font-size:19px}.panel p{color:var(--muted);line-height:1.55;margin:0 0 15px;font-size:14px}.symbol{font-size:25px;margin-bottom:12px}.button{display:inline-block;border:1px solid #365878;border-radius:12px;padding:10px 14px;color:#dff5ff;text-decoration:none;font-weight:700;font-size:14px;background:#142b43}.status{display:flex;align-items:center;gap:9px;color:var(--green);font-size:13px;font-weight:700}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px #72e0ad}
-.notice{margin-top:15px;background:#211d16;border:1px solid #59482b;border-radius:15px;padding:15px;color:#e9d6ad;font-size:13px;line-height:1.55}.footer{text-align:center;color:#71829d;font-size:12px;margin-top:30px}
-@media(max-width:600px){.grid{grid-template-columns:1fr}.hero{padding-top:46px}.tag{font-size:11px}}
+:root{color-scheme:dark;--bg:#080d18;--panel:#111d31;--line:#263a58;--muted:#9aabc5;--blue:#61d4ff;--cyan:#54f0dc}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -12%,#1c4772 0,transparent 48%),var(--bg);color:#f4f8ff;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}.wrap{max-width:850px;margin:auto;padding:22px 17px 48px}.top{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:.1em}.appicon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#1b5b8b,#10233d);border:1px solid #39769b;box-shadow:0 7px 22px #0006;color:#a9f2ff;font-size:25px;font-weight:900}.pill{font-size:11px;color:#8debd7;border:1px solid #28685e;border-radius:30px;padding:7px 10px}.hero{text-align:center;padding:45px 5px 26px}.eyebrow{color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.2em}.hero h1{font-size:clamp(42px,9vw,65px);margin:10px 0;letter-spacing:-.06em}.hero p{color:var(--muted);max-width:560px;margin:auto;line-height:1.6}.section{margin-top:16px}.section h2{font-size:19px;margin:0 0 12px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:linear-gradient(155deg,#172741,#101a2b);border:1px solid var(--line);border-radius:19px;padding:17px}.manager{display:flex;gap:13px;align-items:center}.managericon{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;font-size:26px;font-weight:900;flex:none;box-shadow:0 6px 18px #0005}.sileo{background:linear-gradient(145deg,#68d9e6,#2777a9);color:#062439}.nexstore{background:linear-gradient(145deg,#315dba,#142b60);color:#b6f5ff}.manager h3{margin:0 0 4px}.manager p,.card p{font-size:13px;color:var(--muted);line-height:1.5;margin:0}.choose{margin-top:15px;width:100%;border:1px solid #3c759b;border-radius:12px;padding:11px;background:#163653;color:#eafaff;font-weight:800;font-size:14px}.choose.active{background:#174a43;border-color:#42b99d}.chosen{font-size:12px;color:#8ce8c9;margin-top:9px;min-height:16px}.wide{grid-column:1/-1}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.status{font-size:12px;color:#8ce8c9}.muted{color:var(--muted)}.download{width:100%;padding:13px;border:1px solid #39516b;border-radius:13px;background:#172538;color:#9aa9bb;font-weight:800;opacity:.75}.notice{margin-top:15px;padding:14px;border:1px solid #5a4a2b;background:#211d16;border-radius:14px;color:#e8d8b4;font-size:12px;line-height:1.6}.foot{text-align:center;color:#72839d;font-size:11px;margin-top:26px}
+@media(max-width:560px){.cards{grid-template-columns:1fr}.wide{grid-column:auto}.hero{padding-top:38px}}
 </style>
 </head>
-<body>
-<main class="wrap">
-<header class="top"><div class="brand"><div class="logo">N</div>NEX PROJECTS</div><span class="tag">EARLY PREVIEW</span></header>
-<section class="hero"><div class="eyebrow">YOUR DEVICE. YOUR CONTROL.</div><h1>NexJail<span style="color:var(--blue)">.</span></h1><p>A clean home for device information, compatibility notes, and the NexStore package catalog. Built as an independent project.</p></section>
-<section class="grid">
-<article class="panel"><div class="symbol">📱</div><h2>Device information</h2><p>Check your device model and iOS version in Settings. This page does not access private device data.</p><div class="status"><span class="dot"></span>Ready for manual device check</div></article>
-<article class="panel"><div class="symbol">🧩</div><h2>NexStore</h2><p>Our future package catalog for browsing package details, versions, sources, and compatibility notes.</p><a class="button" href="#nexstore">Explore catalog</a></article>
-<article class="panel"><div class="symbol">🔎</div><h2>Compatibility research</h2><p>We’ll publish verified device and iOS compatibility information here. No unsupported compatibility promises.</p><span class="tag">Research preview</span></article>
-<article class="panel"><div class="symbol">⚙️</div><h2>Project status</h2><p>The website interface is the first milestone. No jailbreak engine or app installer is included yet.</p><div class="status"><span class="dot"></span>Website prototype</div></article>
-</section>
-<section class="panel" id="install" style="margin-top:15px">
-<div class="symbol">⬇️</div><h2>Install NexJail</h2>
-<p>The installer is not ready yet. We still need to build an iOS app, sign it, and host the app package plus its installation manifest. This button will become active only when those pieces are verified.</p>
-<button type="button" disabled style="opacity:.55;cursor:not-allowed;border:1px solid #365878;border-radius:12px;padding:11px 15px;background:#142b43;color:#dff5ff;font-weight:700">Installer not available yet</button>
-</section>
-<section class="panel" id="nexstore" style="margin-top:15px"><div class="symbol">📦</div><h2>NexStore catalog</h2><p>The catalog is being prepared. Packages will appear here only after their source, description, and compatibility have been reviewed.</p><span class="tag">Coming soon</span></section>
-<div class="notice"><strong>Important:</strong> NexJail is currently an informational website prototype. A webpage cannot independently jailbreak an iPhone or bypass Apple’s app-signing requirements. Only use software and installation methods you can verify and trust.</div>
-<footer class="footer">NEXJAIL · NEXSTORE · Independent community project</footer>
+<body><main class="wrap">
+<header class="top"><div class="brand"><div class="appicon">N</div><span>NEX PROJECTS</span></div><span class="pill">UI PREVIEW</span></header>
+<section class="hero"><div class="eyebrow">WELCOME TO YOUR DEVICE HUB</div><h1>NexJail<span style="color:var(--blue)">.</span></h1><p>Choose the package manager you'd like the NexJail interface to display. Your choice is saved on this browser.</p></section>
+<section class="section"><h2>1. Choose your package manager</h2><div class="cards">
+<article class="card"><div class="manager"><div class="managericon sileo">S</div><div><h3>Sileo</h3><p>Display the Sileo option</p></div></div><button class="choose" id="sileo" onclick="selectManager('Sileo')">Choose Sileo</button><div class="chosen" id="sileoState"></div></article>
+<article class="card"><div class="manager"><div class="managericon nexstore">N</div><div><h3>NexStore</h3><p>Use the NexStore concept</p></div></div><button class="choose" id="nexstore" onclick="selectManager('NexStore')">Choose NexStore</button><div class="chosen" id="nexstoreState"></div></article>
+</div></section>
+<section class="section"><h2>2. JIT information</h2><article class="card"><div class="row"><strong>JIT status</strong><span class="status">Information only</span></div><p style="margin-top:9px">JIT means Just-In-Time compilation. Availability depends on the app, iOS version, and supported Apple development tools. This preview cannot enable JIT or change device security settings.</p></article></section>
+<section class="section"><h2>3. NexJail app</h2><article class="card"><div class="manager"><div class="appicon">N</div><div><h3>NexJail</h3><p>Device information · manager choice · JIT notes</p></div></div></article></section>
+<section class="section"><h2>Download</h2><button class="download" disabled>DOWNLOAD IPA — NOT AVAILABLE YET</button><p class="muted" style="font-size:12px;line-height:1.5">The iOS app package has not been built or signed. This website preview is not an IPA installer.</p></section>
+<div class="notice"><strong>Project status:</strong> This is an interface prototype only. It does not contain a jailbreak exploit, install packages, bypass Apple signing, or modify iOS security. Only install software from sources you can verify.</div>
+<footer class="foot">NEXJAIL · NEXSTORE · INDEPENDENT PROJECT</footer>
 </main>
-</body>
-</html>
+<script>
+function selectManager(name){
+  document.querySelectorAll('.choose').forEach(b=>b.classList.remove('active'));
+  document.getElementById(name.toLowerCase()).classList.add('active');
+  document.getElementById('sileoState').textContent=name==='Sileo'?'✓ Selected':'';
+  document.getElementById('nexstoreState').textContent=name==='NexStore'?'✓ Selected':'';
+  try{localStorage.setItem('nexManager',name)}catch(e){}
+}
+try{const saved=localStorage.getItem('nexManager');if(saved==='Sileo'||saved==='NexStore')selectManager(saved)}catch(e){}
+</script></body></html>
