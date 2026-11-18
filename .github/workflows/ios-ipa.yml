@@ -1,0 +1,93 @@
+name: Build NexJail IPA
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "ios/**"
+      - ".github/workflows/ios-ipa.yml"
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate app icon
+        run: |
+          python3 -m pip install --user pillow
+          mkdir -p ios/NexJail/Assets.xcassets/AppIcon.appiconset
+          cat > /tmp/make_icon.py <<'PY'
+          from PIL import Image, ImageDraw, ImageFont
+          import os
+          size = 1024
+          im = Image.new("RGB", (size, size), "#10233d")
+          px = im.load()
+          for y in range(size):
+              for x in range(size):
+                  t = (x + y) / (2 * size)
+                  px[x, y] = (int(10 + 12*t), int(35 + 55*t), int(62 + 75*t))
+          draw = ImageDraw.Draw(im)
+          draw.rounded_rectangle((55,55,969,969), radius=210, outline="#61d4ff", width=22)
+          try:
+              font = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 590)
+          except:
+              font = ImageFont.load_default()
+          bbox = draw.textbbox((0,0), "N", font=font, stroke_width=2)
+          x = (size - (bbox[2]-bbox[0])) / 2 - bbox[0]
+          y = (size - (bbox[3]-bbox[1])) / 2 - bbox[1] - 10
+          draw.text((x,y), "N", font=font, fill="#b9f4ff", stroke_width=2, stroke_fill="#61d4ff")
+          out = "ios/NexJail/Assets.xcassets/AppIcon.appiconset/AppIcon.png"
+          im.save(out)
+          PY
+          python3 /tmp/make_icon.py
+          cat > ios/NexJail/Assets.xcassets/AppIcon.appiconset/Contents.json <<'JSON'
+          {
+            "images": [
+              {
+                "filename": "AppIcon.png",
+                "idiom": "universal",
+                "platform": "ios",
+                "size": "1024x1024"
+              }
+            ],
+            "info": { "author": "xcode", "version": 1 }
+          }
+          JSON
+
+      - name: Generate Xcode project
+        working-directory: ios
+        run: xcodegen generate
+
+      - name: Build unsigned iOS app
+        working-directory: ios
+        run: |
+          xcodebuild -project NexJail.xcodeproj \
+            -scheme NexJail \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package IPA
+        run: |
+          APP="ios/build/Build/Products/Release-iphoneos/NexJail.app"
+          test -d "$APP"
+          mkdir -p Payload
+          cp -R "$APP" Payload/
+          cd Payload/..
+          zip -r NexJail-unsigned.ipa Payload
+          rm -rf Payload
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NexJail-unsigned-IPA
+          path: NexJail-unsigned.ipa
+          if-no-files-found: error
+          retention-days: 14
