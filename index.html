@@ -1,33 +1,37 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d18"><title>NexJail</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d18">
+<title>NexJail IPA</title>
 <style>
-:root{color-scheme:dark;--bg:#080d18;--panel:#14223a;--line:#2a4162;--muted:#9aabc5;--blue:#61d4ff;--green:#83e7c1}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -12%,#1c4772,transparent 48%),var(--bg);color:#f4f8ff;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}.wrap{max-width:760px;margin:auto;padding:22px 17px 48px}.top{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.1em}.appicon{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#1b5b8b,#10233d);border:1px solid #39769b;color:#a9f2ff;font-size:25px;font-weight:900}.pill{font-size:11px;color:#8debd7;border:1px solid #28685e;border-radius:30px;padding:7px 10px}.hero{text-align:center;padding:46px 5px 27px}.eyebrow{color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.2em}.hero h1{font-size:clamp(42px,9vw,65px);margin:10px 0;letter-spacing:-.06em}.hero p{color:var(--muted);max-width:540px;margin:auto;line-height:1.6}.card{background:linear-gradient(155deg,#172741,#101a2b);border:1px solid var(--line);border-radius:19px;padding:19px;margin-top:14px}.primary{width:100%;border:1px solid #4a9ac2;border-radius:14px;padding:15px;background:linear-gradient(110deg,#174b73,#176477);color:white;font-size:16px;font-weight:900}.muted{color:var(--muted);font-size:13px;line-height:1.55}.hidden{display:none}.row{display:flex;justify-content:space-between;gap:12px;align-items:center}.status{font-size:12px;color:#f0cf8d}.device{font-size:18px;font-weight:800;margin:8px 0}.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}.manager{border:1px solid var(--line);border-radius:16px;padding:15px;background:#101c30}.managericon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:25px;font-weight:900;margin-bottom:12px}.sileo{background:linear-gradient(145deg,#68d9e6,#2777a9);color:#062439}.nex{background:linear-gradient(145deg,#315dba,#142b60);color:#b6f5ff}.manager h3{margin:0 0 5px}.manager p{font-size:12px;color:var(--muted);line-height:1.45;margin:0}.choose{margin-top:12px;width:100%;padding:10px;border-radius:11px;border:1px solid #3c759b;background:#163653;color:#eafaff;font-weight:800}.notice{margin-top:14px;padding:14px;border:1px solid #5a4a2b;background:#211d16;border-radius:14px;color:#e8d8b4;font-size:12px;line-height:1.6}.foot{text-align:center;color:#72839d;font-size:11px;margin-top:26px}@media(max-width:500px){.options{grid-template-columns:1fr}.hero{padding-top:38px}}
-</style></head><body><main class="wrap">
-<header class="top"><div class="brand"><div class="appicon">N</div>NEX PROJECTS</div><span class="pill">DEVICE CHECK</span></header>
-<section class="hero"><div class="eyebrow">WELCOME TO YOUR DEVICE HUB</div><h1>NexJail<span style="color:var(--blue)">.</span></h1><p>Check your device details first. NexJail will show whether compatibility has been verified before displaying package-manager choices.</p></section>
-<section id="start" class="card"><h2 style="margin:0 0 9px">Ready to check your device?</h2><p class="muted">Tap below to read the device and iOS details your browser makes available. This is a compatibility check screen only; it does not jailbreak your device.</p><button class="primary" onclick="checkDevice()">JAILBREAK</button></section>
-<section id="result" class="card hidden"><div class="row"><strong>Device detected</strong><span class="status" id="checkStatus">Checking…</span></div><div class="device" id="deviceName">—</div><p class="muted" id="osVersion">—</p><div style="border-top:1px solid var(--line);margin:14px 0"></div><strong id="compatTitle">Compatibility not verified</strong><p class="muted" id="compatText">This preview does not yet contain a verified device/iOS compatibility list, so it cannot safely say whether a jailbreak is supported.</p><button class="primary" style="margin-top:8px;background:#202d40;border-color:#40516a" onclick="resetCheck()">CHECK AGAIN</button></section>
-<section id="managerSection" class="card hidden"><h2 style="margin:0 0 12px">Choose your package manager</h2><div class="options"><article class="manager"><div class="managericon sileo">S</div><h3>Sileo</h3><p>Use the Sileo-style package manager option.</p><button class="choose" onclick="choose('Sileo')">Choose Sileo</button></article><article class="manager"><div class="managericon nex">N</div><h3>NexStore</h3><p>Use the NexStore package manager option.</p><button class="choose" onclick="choose('NexStore')">Choose NexStore</button></article></div><p class="muted" id="chosen" aria-live="polite"></p></section>
-<section class="card"><div class="row"><strong>JIT information</strong><span class="status">Optional</span></div><p class="muted">JIT means Just-In-Time compilation. Whether an app can use it depends on iOS, the app, and supported development tools. This page only explains JIT; it cannot enable it.</p></section>
-<div class="notice"><strong>Important:</strong> NexJail is currently a website prototype. Browser detection cannot confirm jailbreak support, and this page does not contain an exploit, install packages, or change iOS security settings. Only rely on compatibility information verified by the project maintainers.</div>
-<footer class="foot">NEXJAIL · NEXSTORE · INDEPENDENT PROJECT</footer></main>
-<script>
-function checkDevice(){
- const ua=navigator.userAgent||'';
- const isPad=/iPad/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
- const isPhone=/iPhone|iPod/.test(ua);
- const device=isPad?'iPad':isPhone?'iPhone':/Android/.test(ua)?'Android device':'Device not identified by browser';
- const match=ua.match(/OS ([0-9_]+)/);
- const version=match?'iOS/iPadOS '+match[1].replace(/_/g,'.'):'OS version not exposed by browser';
- document.getElementById('deviceName').textContent=device;
- document.getElementById('osVersion').textContent=version;
- document.getElementById('checkStatus').textContent='Details detected';
- document.getElementById('compatTitle').textContent='NOT VERIFIED';
- document.getElementById('compatText').textContent='No verified compatibility entry is configured for this prototype. It cannot determine whether your exact model and iOS version can be jailbroken, so package-manager choices stay hidden.';
- document.getElementById('start').classList.add('hidden');
- document.getElementById('result').classList.remove('hidden');
- document.getElementById('managerSection').classList.add('hidden');
-}
-function resetCheck(){document.getElementById('result').classList.add('hidden');document.getElementById('start').classList.remove('hidden');document.getElementById('managerSection').classList.add('hidden')}
-function choose(name){document.getElementById('chosen').textContent='Selected: '+name}
-</script></body></html>
+:root{color-scheme:dark;--bg:#080d18;--panel:#14223a;--line:#2a4162;--muted:#9aabc5;--blue:#61d4ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -12%,#1c4772,transparent 48%),var(--bg);color:#f4f8ff;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;display:grid;place-items:center;padding:20px}
+.wrap{width:100%;max-width:520px}
+header{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.12em;font-size:13px}
+.icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#1b5b8b,#10233d);border:1px solid #39769b;color:#a9f2ff;font-size:25px}
+.card{margin-top:28px;padding:26px 22px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(155deg,#172741,#101a2b);text-align:center;box-shadow:0 20px 70px #0005}
+.eyebrow{color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.2em}
+h1{font-size:clamp(42px,10vw,60px);letter-spacing:-.06em;margin:10px 0}
+p{color:var(--muted);line-height:1.6;font-size:14px}
+button{width:100%;margin-top:18px;padding:16px;border-radius:14px;border:1px solid #40516a;background:#202d40;color:#9aabc5;font-size:16px;font-weight:900;cursor:not-allowed}
+.note{margin-top:16px;padding:13px;border:1px solid #5a4a2b;background:#211d16;border-radius:13px;color:#e8d8b4;font-size:12px;line-height:1.55}
+footer{text-align:center;color:#72839d;font-size:11px;margin-top:22px}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header><div class="icon">N</div><span>NEX PROJECTS</span></header>
+<section class="card">
+<div class="eyebrow">IPHONE APP DOWNLOAD</div>
+<h1>NexJail<span style="color:var(--blue)">.</span></h1>
+<p>Get the NexJail IPA for your iPhone.</p>
+<button type="button" disabled>INSTALL IPA</button>
+<div class="note"><strong>IPA not uploaded yet.</strong><br>The install button will become available when a real NexJail.ipa file is added to this project. This page does not create or sign an IPA.</div>
+</section>
+<footer>NEXJAIL · INDEPENDENT PROJECT</footer>
+</main>
+</body>
+</html>
