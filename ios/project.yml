@@ -13,6 +13,8 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.majedo67.nexjail
         PRODUCT_NAME: NexJail
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_OUTPUT_FORMAT: xml
         INFOPLIST_KEY_CFBundleDisplayName: NexJail
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
